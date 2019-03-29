@@ -20,7 +20,6 @@ async def insertData():
     conn.execute("INSERT INTO WEATHER (TIME,TEMP,PRESS) \
             VALUES (?, ?, ?)", data)
     conn.commit()
-    asyncio.ensure_future(insertData())
 
 loop = asyncio.get_event_loop()
 
@@ -29,12 +28,9 @@ def main():
         asyncio.ensure_future(insertData())
         loop.run_forever()
     except KeyboardInterrupt:
-        pass
-    finally:
         print("Closing station")
         loop.close()
+        conn.close()
 
 if __name__=="__main__":
     main()
-    conn.close()
-    loop.close()
