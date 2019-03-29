@@ -22,7 +22,6 @@ async def insertData():
     conn.commit()
     asyncio.ensure_future(insertData())
 
-
 loop = asyncio.get_event_loop()
 
 def main():
