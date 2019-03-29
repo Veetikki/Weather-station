@@ -13,7 +13,7 @@ def temp():
 def press():
     return weather.pressure(unit='hPa')
 
-def insertData():
+async def insertData():
     await asyncio.sleep(2)
     data=[dt.datetime().now(), temp(), press()]
     conn.execute("INSERT INTO WEATHER (DATE,TEMP,PRESS) \
@@ -31,5 +31,8 @@ def main():
     finally:
         print("Closing station")
         loop.close()
+
+if __name__ == "__main__":
+	main()
 
 
