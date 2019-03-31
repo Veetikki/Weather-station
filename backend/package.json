@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for weather station",
+  "main": "pythonCom.js",
+  "scripts": {
+    "start": "node pythonCom.js",
+    "server": "nodemon pythonCom.js"
+  },
+  "author": "Veeti Ahvonen",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
