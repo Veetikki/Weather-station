@@ -1,0 +1,2 @@
+#!/bin/bash
+sqlite3 -header -csv weather.db "select * from weather" > testData.csv
