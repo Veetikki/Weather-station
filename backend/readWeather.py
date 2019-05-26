@@ -15,10 +15,11 @@ def press():
 
 async def insertData():
     #await asyncio.sleep(3)
-    data=[dt.datetime.now(), temp(), press()]
+    currentTime = dt.datetime.now()
+    data=[currentTime.strftime("%Y-%m-%d"), currentTime.strftime("%H:%M") , temp(), press()]
     print(data)
-    conn.execute("INSERT INTO WEATHER (TIME,TEMP,PRESS) \
-            VALUES (?, ?, ?)", data)
+    conn.execute("INSERT INTO WEATHER (DATE, CLOCK, TEMP, PRESS) \
+            VALUES (?, ?, ?, ?)", data)
     conn.commit()
     #asyncio.ensure_future(insertData())
 
