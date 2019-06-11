@@ -11,7 +11,7 @@ class App extends Component {
     super();
 
     this.state ={
-      liveWeather: null,
+      liveWeather: [],
     }
   }
 
@@ -19,27 +19,35 @@ class App extends Component {
   {
     fetch('/api/liveWeather')
       .then(res => res.json())
-      .then(liveWeather => this.setState({ liveWeather }, () => console.log(liveWeather)));
+      .then(liveWeather => this.setState({ liveWeather: liveWeather }, () => console.log(liveWeather)));
   }
 
   render() {
     return (
       <Paper>
-        <AppBar>
+        <AppBar position="static">
           <Toolbar>
-
           </Toolbar>
         </AppBar>
         <Table>
           <TableHead>
-            
+            Live weather
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>
-                
-              </TableCell>
-            </TableRow>
+                <TableCell>
+                  {this.state.liveWeather.DATE}
+                </TableCell>
+                <TableCell>
+                  {this.state.liveWeather.CLOCK}
+                </TableCell>
+                <TableCell>
+                  {this.state.liveWeather.TEMP}
+                </TableCell>
+                <TableCell>
+                  {this.state.liveWeather.PRESS}
+                </TableCell>
+              </TableRow>
           </TableBody>
         </Table>
       </Paper>
