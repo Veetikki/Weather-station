@@ -5,7 +5,9 @@
   "main": "pythonCom.js",
   "scripts": {
     "start": "node pythonCom.js",
-    "server": "nodemon pythonCom.js"
+    "server": "nodemon pythonCom.js",
+    "client": "cd .. && cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Veeti Ahvonen",
   "license": "ISC",

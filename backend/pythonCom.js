@@ -34,7 +34,7 @@ app.get('/api/weather', (req, res)=>{
 });
 
 app.get('/api/liveWeather', (req, res) => {
-  const myPyshell = new PythonShell('liveWeatherTest.py', {mode: 'json'});
+  const myPyshell = new PythonShell('getLiveWeather.py', {mode: 'json'});
   myPyshell.on('message', function (response) {
     res.json(response);
   });
