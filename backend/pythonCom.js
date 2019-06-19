@@ -14,27 +14,28 @@ app.get('/api/weather', (req, res)=>{
     {
       console.error(err.message);
     }
-    console.log('Connected to the weather.db.');
-  });
-  
-  
-  let sql = `SELECT * FROM weather`;
-
-  db.all(sql, [], (err, rows)=>{
-    if(err)
+    else
     {
-      res.send(err);
+      console.log('Connected to the weather.db.');
+      let sql = `SELECT * FROM weather`;
+
+      db.all(sql, [], (err, rows)=>{
+        if(err)
+        {
+          res.send(err);
+        }
+        
+        res.json(rows);
+        
+      });    
     }
-    
-    res.json(rows);
-    
   });
-  
+
   db.close();
 });
 
 app.get('/api/liveWeather', (req, res) => {
-  const myPyshell = new PythonShell('getLiveWeather.py', {mode: 'json'});
+  const myPyshell = new PythonShell('getLiveWeatherTest.py', {mode: 'json'});
   myPyshell.on('message', function (response) {
     res.json(response);
   });
