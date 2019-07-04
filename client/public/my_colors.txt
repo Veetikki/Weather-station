@@ -1,0 +1,4 @@
+#2980B9 darkBlue
+#81D4FA lightBlue
+#82E0AA lightGreen
+#CFD8DC lightGrey

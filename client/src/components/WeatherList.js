@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Table, TableHead, TableBody, TableRow, TableCell} from '@material-ui/core';
-import '../styles/weatherList.css';
 
 const WEATHER = "/api/weather";
 
