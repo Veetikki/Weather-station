@@ -1,4 +1,4 @@
-import React, { Component, View } from 'react';
+import React, { Component} from 'react';
 import {Paper, Typography, Table, TableHead, TableBody, TableRow, TableCell, AppBar, Toolbar, Grid} from '@material-ui/core';
 import LiveWeather from './components/LiveWeather';
 import WeatherList from './components/WeatherList';
@@ -41,7 +41,7 @@ class App extends Component {
               <LiveWeather/>  
             </Grid>
             <Grid>
-              <Clock size={250}/>
+              <Clock size={400}/>
             </Grid>
           </Grid>
         </Paper>
