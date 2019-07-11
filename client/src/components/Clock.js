@@ -94,7 +94,7 @@ class Clock extends Component {
         ctx.strokeStyle = "Black";
         const ol = new Path2D();
 		ol.arc(this.props.size/2, this.props.size/2, this.props.size/2-10, 0, Math.PI * 2);
-		ctx.fillStyle = "#82E0AA";
+		ctx.fillStyle = this.props.backgroundColor;
 		ctx.fill(ol);
         ctx.stroke(ol);
         
@@ -143,7 +143,6 @@ class Clock extends Component {
 			>
                 <canvas
                 className={classes.canvas}
-                size={this.props.size} 
                 width={this.props.size}
                 height={this.props.size}
                 ref={(el) => {this.canvas = el;}} 

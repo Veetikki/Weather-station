@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Table, TableHead, TableBody, TableRow, TableCell, List, ListItem, ListItemText} from '@material-ui/core';
+import {List, ListItem, ListItemText} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const LIVEWEATHER = "/api/liveWeather";
+const WEATHERAPI = "http://api.openweathermap.org/data/2.5/weather?q=33100,fi&units=metric&APPID=518ac10bfba2319ed61c825a23ab5275";
 
 const styles = {
     root:{
@@ -29,6 +30,8 @@ class LiveWeather extends Component {
 
         this.state = {
             liveWeather: [],
+            weather: [],
+            humidity: 0,
         }
     }
 
@@ -37,6 +40,12 @@ class LiveWeather extends Component {
         fetch(LIVEWEATHER)
         .then(res => res.json())
         .then(liveWeather => this.setState({ liveWeather: liveWeather }, () => console.log(liveWeather)))
+        .catch((err) => {
+            console.log(err)
+        });
+        fetch(WEATHERAPI)
+        .then(res => res.json())
+        .then(weatherStatus => this.setState({ weather: weatherStatus.weather[0], humidity: weatherStatus.main.humidity }, () => console.log(weatherStatus.weather[0])))
         .catch((err) => {
             console.log(err)
         });
@@ -52,11 +61,20 @@ class LiveWeather extends Component {
                     </ListItemText>
                     <ListItem>
                         <List>
+                            <ListItem alignItems="center">
+                                <img width={60} src ={`http://openweathermap.org/img/wn/${this.state.weather.icon}.png`} alt="wthr img" />
+                            </ListItem>
                             <ListItemText>
-                                Temperature: {this.state.liveWeather.TEMP}
+                                Temperature: {this.state.liveWeather.TEMP} °C
                             </ListItemText>
                             <ListItemText>
-                                Pressure: {this.state.liveWeather.PRESS}
+                                Pressure: {this.state.liveWeather.PRESS} hPa
+                            </ListItemText>
+                            <ListItemText>
+                                Humidity: {this.state.humidity}%
+                            </ListItemText>
+                            <ListItemText>
+                                Status: {this.state.weather.description}
                             </ListItemText>
                         </List> 
                     </ListItem>
