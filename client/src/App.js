@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import {Paper, AppBar, Toolbar, Grid} from '@material-ui/core';
 import LiveWeather from './components/LiveWeather';
 import Clock from './components/Clock';
+import Diary from './components/Diary';
 import { withStyles } from '@material-ui/core/styles';
 
 const style = {
@@ -41,6 +42,9 @@ class App extends Component {
             </Grid>
             <Grid>
               <Clock size={300} backgroundColor={"#82E0AA"}/>
+            </Grid>
+            <Grid>
+              <Diary />
             </Grid>
           </Grid>
         </Paper>

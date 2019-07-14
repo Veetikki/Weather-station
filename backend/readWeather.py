@@ -5,7 +5,6 @@ from time import sleep
 from envirophat import weather
 import asyncio
 
-t = dt.datetime.now()
 conn = sqlite3.connect('weather.db')
 
 def temp():

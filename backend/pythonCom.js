@@ -34,6 +34,32 @@ app.get('/api/weather', (req, res)=>{
   db.close();
 });
 
+app.get('/api/diary', (req, res)=>{
+  let db = new sqlite3.Database('diary.db', (err) => {
+    if(err) 
+    {
+      console.error(err.message);
+    }
+    else
+    {
+      console.log('Connected to the diary.db.');
+      let sql = `SELECT * FROM diary`;
+
+      db.all(sql, [], (err, rows)=>{
+        if(err)
+        {
+          res.send(err);
+        }
+        
+        res.json(rows);
+        
+      });    
+    }
+  });
+
+  db.close();
+});
+
 app.get('/api/liveWeather', (req, res) => {
   const myPyshell = new PythonShell('getLiveWeatherTest.py', {mode: 'json'});
   myPyshell.on('message', function (response) {

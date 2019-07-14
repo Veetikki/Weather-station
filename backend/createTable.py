@@ -8,7 +8,13 @@ conn.execute('''CREATE TABLE WEATHER
          CLOCK TEXT NOT NULL,
          TEMP REAL NOT NULL,
          PRESS REAL NOT NULL,
-         PRIMARY KEY (DATE, CLOCK));''')
-print("Table created successfully")
+         PRIMARY KEY (DATE, CLOCK),
+         FOREIGN KEY (DATE) REFERENCES DIARY(DATE));''')
+print("Table Weather created successfully")
 
+conn.execute('''CREATE TABLE DIARY
+         (DATE TEXT NOT NULL,
+         DIARY TEXT NOT NULL,
+         PRIMARY KEY (DATE));''')
+print("Table Diary created successfully")
 conn.close()

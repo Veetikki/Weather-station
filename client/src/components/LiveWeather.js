@@ -21,6 +21,7 @@ const styles = {
         justify: "center",
         borderStyle: "solid",
         borderColor: "#2980B9",
+        alignItems: "center"
     }
 };
 
@@ -57,7 +58,7 @@ class LiveWeather extends Component {
             <div className={classes.root}> 
                 <List padding="dense" className={classes.body}>
                     <ListItemText align="center" className={classes.header}>
-                        <h1 className={classes.headerText}>Live Weather</h1>
+                        <h1 className={classes.headerText}>Live Weather Tampere</h1>
                     </ListItemText>
                     <ListItem>
                         <List>
