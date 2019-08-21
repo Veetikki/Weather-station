@@ -17,7 +17,8 @@
     "node-pre-gyp": "^0.13.0",
     "nodemon": "^1.19.1",
     "python-shell": "^1.0.7",
-    "sqlite": "^3.0.3"
+    "sqlite": "^3.0.3",
+    "sqlite3": "^4.0.9"
   },
   "devDependencies": {}
 }

@@ -17,13 +17,6 @@ class Clock extends Component {
 	}
 	
 	/**
-	  * Draw the canvas graphics when some prop or state changed.
-	  */
-	componentDidUpdate(prevProps, prevState) {
-		this.redrawCanvas();
-	}
-	
-	/**
 	  * Draw the canvas graphics when the component first appears on screen.
 	  */
 	componentDidMount() {

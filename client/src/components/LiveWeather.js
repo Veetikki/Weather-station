@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {List, ListItem, ListItemText} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import BUNDLE from "../App_bundle";
 
 const LIVEWEATHER = "/api/liveWeather";
 const WEATHERAPI = "http://api.openweathermap.org/data/2.5/weather?q=33100,fi&units=metric&APPID=518ac10bfba2319ed61c825a23ab5275";
@@ -12,6 +13,7 @@ const styles = {
     },
     header: {
         background: "#2980B9",
+        padding: "0px 10px"
     },
     headerText: {
         fontSize: 22,
@@ -54,11 +56,16 @@ class LiveWeather extends Component {
 
     render() { 
         const { classes } = this.props;
+        let bundle = BUNDLE.default;
+		if (this.props.language in BUNDLE) {
+            bundle = BUNDLE[this.props.language];
+        }
+        
         return (
             <div className={classes.root}> 
                 <List padding="dense" className={classes.body}>
                     <ListItemText align="center" className={classes.header}>
-                        <h1 className={classes.headerText}>Live Weather Tampere</h1>
+                        <h1 className={classes.headerText}>{bundle.liveWeather} Tampere</h1>
                     </ListItemText>
                     <ListItem>
                         <List>
@@ -66,16 +73,16 @@ class LiveWeather extends Component {
                                 <img width={60} src ={`http://openweathermap.org/img/wn/${this.state.weather.icon}.png`} alt="wthr img" />
                             </ListItem>
                             <ListItemText>
-                                Temperature: {this.state.liveWeather.TEMP} °C
+                                {bundle.temp}: {this.state.liveWeather.TEMP} °C
                             </ListItemText>
                             <ListItemText>
-                                Pressure: {this.state.liveWeather.PRESS} hPa
+                                {bundle.press}: {this.state.liveWeather.PRESS} hPa
                             </ListItemText>
                             <ListItemText>
-                                Humidity: {this.state.humidity}%
+                                {bundle.humidity}: {this.state.humidity}%
                             </ListItemText>
                             <ListItemText>
-                                Status: {this.state.weather.description}
+                                {bundle.status}: {this.state.weather.description}
                             </ListItemText>
                         </List> 
                     </ListItem>

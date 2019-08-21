@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {List, ListItemText, TextField, Button, Typography, Dialog, DialogContent, DialogActions, DialogTitle} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import BUNDLE from '../App_bundle';
 
 const styles = {
     root:{
@@ -78,12 +79,17 @@ class LiveWeather extends Component {
 
     render() { 
         const { classes } = this.props;
+        let bundle = BUNDLE.default;
+		if (this.props.language in BUNDLE) {
+            bundle = BUNDLE[this.props.language];
+		}
+
         return (
             <div>
                 <div className={classes.root}> 
                     <List padding="dense" className={classes.body}>
                         <ListItemText align="center" className={classes.header}>
-                            <h1 className={classes.headerText}>Diary</h1>
+                            <h1 className={classes.headerText}>{bundle.diary}</h1>
                         </ListItemText>
                         <ListItemText align="center">
                             <div className={classes.diary}>
@@ -91,22 +97,19 @@ class LiveWeather extends Component {
                             </div>
                         </ListItemText>
                         <ListItemText align="center" >
-                            <Button variant="contained" onClick={(e) => this.openDialog(e)}> Update </Button>
+                            <Button variant="contained" onClick={(e) => this.openDialog(e)}> {bundle.update} </Button>
                         </ListItemText>
                     </List>
                 </div>
                 <div>
                     <Dialog open={this.state.openDialog}>
-                        <DialogTitle>Edit diary</DialogTitle>
+                        <DialogTitle>{bundle.edit}</DialogTitle>
                         <DialogContent>
-                            <Typography>
-                                Please, type a new text.
-                            </Typography>
                             <TextField multiline variant="outlined" value={this.state.newDiary} onChange={(e) => this.updateDiary(e)} />
                         </DialogContent>
                         <DialogActions>
-                            <Button variant="contained" onClick={(e) => this.cancelChange(e)} > cancel </Button>
-                            <Button variant="contained" onClick={(e) => this.closeDialog(e)} > confirm </Button>
+                            <Button variant="contained" onClick={(e) => this.cancelChange(e)} > {bundle.cancel} </Button>
+                            <Button variant="contained" onClick={(e) => this.closeDialog(e)} > {bundle.confirm} </Button>
                         </DialogActions>
                     </Dialog>
                     
