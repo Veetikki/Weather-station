@@ -14,6 +14,14 @@ class Clock extends Component {
 	constructor() {
 		super();
 		this.canvas = null; // updated via ref
+    }
+    
+    /**
+	  * Draw the canvas graphics when some prop or state changed.
+	  */
+	componentDidUpdate(prevProps, prevState) {
+        var ctx = this.canvas.getContext('2d');
+		this.redrawCanvas(ctx);
 	}
 	
 	/**
@@ -21,8 +29,9 @@ class Clock extends Component {
 	  */
 	componentDidMount() {
         //checks every second
+        //oltava määritelmä täällä muuten tulee erroria
+        var ctx = this.canvas.getContext('2d');
 		setInterval( () => {
-            var ctx = this.canvas.getContext('2d');
             this.redrawCanvas(ctx);
             this.redrawTime(ctx);
             

@@ -18,7 +18,7 @@
     "nodemon": "^1.19.1",
     "python-shell": "^1.0.7",
     "sqlite": "^3.0.3",
-    "sqlite3": "^4.0.9"
+    "sqlite3": "^4.1.0"
   },
   "devDependencies": {}
 }

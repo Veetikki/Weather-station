@@ -1,10 +1,7 @@
 import React, { Component} from 'react';
-import {Paper, AppBar, Toolbar, Grid, Switch} from '@material-ui/core';
-import LiveWeather from './components/LiveWeather';
-import Clock from './components/Clock';
-import Diary from './components/Diary';
+import {Paper, AppBar, Toolbar, Grid, Switch, Button} from '@material-ui/core';
+import WeatherList from './components/WeatherList';
 import { withStyles } from '@material-ui/core/styles';
-import BUNDLE from './App_bundle.js';
 
 const style = {
   root:{
@@ -17,13 +14,13 @@ const style = {
   }
 }
 
-class App extends Component {
+class Statics extends Component {
   constructor()
   {
     super();
 
     this.state ={
-      language: "en",
+      language: localStorage.getItem('uiLanguage')
     }
   }
 
@@ -51,18 +48,20 @@ class App extends Component {
         <Paper className={classes.body}>
           <AppBar className={classes.bar} position="static">
             <Toolbar >
-              en <Switch checked={this.state.language !== "en"} onChange={(e) => this.handleLanguageChange(e)} value={this.state.language}></Switch> fi
+                <div>
+                    en <Switch checked={this.state.language !== "en"} onChange={(e) => this.handleLanguageChange(e)} value={this.state.language}></Switch> fi
+                </div>
+                <div style={{padding: "0px 10px"}}>
+                    <Button href="http://localhost:3000" variant="contained"> Main </Button>
+                </div>
+                <div style={{padding: "0px 10px"}}>
+                    <Button href="http://localhost:3000/table" variant="contained"> Table </Button>
+                </div>
             </Toolbar>
           </AppBar>
           <Grid justify="center" container>
             <Grid item>
-              <LiveWeather language={this.state.language}/>  
-            </Grid>
-            <Grid>
-              <Clock size={300} backgroundColor={"#82E0AA"}/>
-            </Grid>
-            <Grid>
-              <Diary language={this.state.language} />
+              <WeatherList/>  
             </Grid>
           </Grid>
         </Paper>
@@ -71,4 +70,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(style)(App);
+export default withStyles(style)(Statics);

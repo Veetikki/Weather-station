@@ -10,7 +10,10 @@
             temp: "Temperature",
             press: "Pressure",
             humidity: "Humidity",
-            status: "Status"
+            status: "Status",
+            main: "Main",
+            table: "Table",
+            statics: "Statics",
       },	
       en: {
             liveWeather: "Live Weather Station",
@@ -22,7 +25,10 @@
             temp: "Temperature",
             press: "Pressure",
             humidity: "Humidity",
-            status: "Status"
+            status: "Status",
+            main: "Main",
+            table: "Table",
+            statics: "Statics",
       },	
       fi: {
             liveWeather: "Sääasema",
@@ -34,7 +40,10 @@
             temp: "Lämpötila",
             press: "Ilmanpaine",
             humidity: "Ilmankosteus",
-            status: "Säätila"
+            status: "Säätila",
+            main: "Etusivu",
+            table: "Taulukko",
+            statics: "Tilastot",
       },
   }
   
