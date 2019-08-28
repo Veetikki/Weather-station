@@ -14,6 +14,12 @@
             main: "Main",
             table: "Table",
             statics: "Statics",
+            list: "Weatherlist",
+            date: "Date",
+            clock: "Clock",
+            time: "Time",
+            asc: "Ascending",
+            desc: "Descending",
       },	
       en: {
             liveWeather: "Live Weather Station",
@@ -29,6 +35,12 @@
             main: "Main",
             table: "Table",
             statics: "Statics",
+            list: "Weatherlist",
+            date: "Date",
+            clock: "Clock",
+            time: "Time",
+            asc: "Ascending",
+            desc: "Descending",
       },	
       fi: {
             liveWeather: "Sääasema",
@@ -44,6 +56,12 @@
             main: "Etusivu",
             table: "Taulukko",
             statics: "Tilastot",
+            list: "Säälista",
+            date: "Päivämäärä",
+            clock: "Kello",
+            time: "Aika",
+            asc: "Nouseva",
+            desc: "Laskeva",
       },
   }
   

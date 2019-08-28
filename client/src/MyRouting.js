@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import {AppBar, Toolbar,Switch, Button} from '@material-ui/core';
+import {AppBar, Toolbar,Switch, Button, } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Route, BrowserRouter as Router,} from 'react-router-dom';
 import Main from './components/Main';
@@ -7,7 +7,7 @@ import Table from './components/Table';
 import Statics from './components/Statics';
 import BUNDLE from './App_bundle';
 
-const style = {
+const styles = {
   root:{
   },
   bar: {
@@ -92,4 +92,4 @@ class MyRouting extends Component {
   }
 }
 
-export default withStyles(style)(MyRouting);
+export default withStyles(styles)(MyRouting);

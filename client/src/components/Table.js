@@ -48,7 +48,7 @@ class Table extends Component {
         <Paper className={classes.body}>
           <Grid justify="center" container>
             <Grid item>
-              <WeatherList/>  
+              <WeatherList language={this.state.language}/>  
             </Grid>
           </Grid>
         </Paper>

@@ -6,7 +6,8 @@ import BUNDLE from '../../App_bundle';
 const styles = {
     root:{
         padding: "20px",
-        maxWidth: "500px"
+        maxWidth: "500px",
+        minWidth: "200px"
     },
     header: {
         background: "#2980B9",
