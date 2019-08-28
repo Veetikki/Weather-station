@@ -1,0 +1,23 @@
+{
+  "name": "weatherstation",
+  "version": "1.0.0",
+  "description": "Raspberry Pi weather station",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd backend && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Veetikki/Weather-station.git"
+  },
+  "author": "Veeti Ahvonen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Veetikki/Weather-station/issues"
+  },
+  "homepage": "https://github.com/Veetikki/Weather-station#readme",
+  "dependencies": {
+    "concurrently": "^4.1.2",
+    "nodemon": "^1.19.1"
+  }
+}
