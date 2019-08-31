@@ -84,7 +84,7 @@ class MyRouting extends Component {
                 <div>
                     <Route exact path="/" component={() => <Main />} />
                     <Route path="/table" component={() => <Table />} />
-                    <Route path="/statics" component={() => <Table />} />
+                    <Route path="/statics" component={() => <Statics />} />
                 </div>
             </Router>
       </div>

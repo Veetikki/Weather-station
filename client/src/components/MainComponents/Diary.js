@@ -113,7 +113,6 @@ class LiveWeather extends Component {
                             <Button variant="contained" onClick={(e) => this.closeDialog(e)} > {bundle.confirm} </Button>
                         </DialogActions>
                     </Dialog>
-                    
                 </div>
             </div>
         );
