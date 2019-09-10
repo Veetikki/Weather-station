@@ -1,36 +1,22 @@
 import React, {Component} from 'react';
-import {List, ListItemText, TextField, Button, Typography, Dialog, DialogContent, DialogActions, DialogTitle} from '@material-ui/core';
+import {TextField, Button, Typography, Dialog, DialogContent, DialogActions, DialogTitle, Card, CardHeader, CardContent, CardActions, } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import BUNDLE from '../../App_bundle';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 const styles = {
     root:{
         padding: "20px",
         maxWidth: "500px",
-        minWidth: "200px"
+        minWidth: "200px",
+        textAlign: "center",
     },
-    header: {
-        background: "#2980B9",
-    },
-    headerText: {
-        fontSize: 22,
-    },
-    body: {
-        background: "#81D4FA",
-        borderStyle: "solid",
-        borderColor: "#2980B9",
-    },
-    diary: {
-        wordWrap: "breakWord",
-        width: "90%",
-    },
-    text: {
-        borderStyle: "solid", 
-        padding:20,
+    button:{
+        justifyContent: 'center'
     },
 };
 
-class LiveWeather extends Component {
+class Diary extends Component {
     constructor(){
         super();
 
@@ -86,21 +72,19 @@ class LiveWeather extends Component {
 		}
 
         return (
-            <div>
-                <div className={classes.root}> 
-                    <List padding="dense" className={classes.body}>
-                        <ListItemText align="center" className={classes.header}>
-                            <h1 className={classes.headerText}>{bundle.diary}</h1>
-                        </ListItemText>
-                        <ListItemText align="center">
-                            <div className={classes.diary}>
-                                <Typography align="left" className={classes.text}>{this.state.diary}</Typography>
-                            </div>
-                        </ListItemText>
-                        <ListItemText align="center" >
-                            <Button variant="contained" onClick={(e) => this.openDialog(e)}> {bundle.update} </Button>
-                        </ListItemText>
-                    </List>
+            <MuiThemeProvider theme={this.props.theme}>
+                <div className={classes.root}>
+                    <Card raised>
+                        <CardHeader className={classes.header} title={bundle.diary}>
+
+                        </CardHeader>
+                        <CardContent >
+                            <Typography align="left" className={classes.text}>{this.state.diary}</Typography>
+                        </CardContent>
+                        <CardActions className={classes.button}>
+                            <Button color="secondary" variant="contained" onClick={(e) => this.openDialog(e)}> {bundle.update} </Button>
+                        </CardActions>
+                    </Card>
                 </div>
                 <div>
                     <Dialog open={this.state.openDialog}>
@@ -109,14 +93,14 @@ class LiveWeather extends Component {
                             <TextField multiline variant="outlined" value={this.state.newDiary} onChange={(e) => this.updateDiary(e)} />
                         </DialogContent>
                         <DialogActions>
-                            <Button variant="contained" onClick={(e) => this.cancelChange(e)} > {bundle.cancel} </Button>
-                            <Button variant="contained" onClick={(e) => this.closeDialog(e)} > {bundle.confirm} </Button>
+                            <Button color="secondary" variant="contained" onClick={(e) => this.cancelChange(e)} > {bundle.cancel} </Button>
+                            <Button color="secondary" variant="contained" onClick={(e) => this.closeDialog(e)} > {bundle.confirm} </Button>
                         </DialogActions>
                     </Dialog>
                 </div>
-            </div>
+            </MuiThemeProvider>
         );
     }
 }
  
-export default withStyles(styles)(LiveWeather);
+export default withStyles(styles, {withTheme: true})(Diary);

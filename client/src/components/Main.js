@@ -1,20 +1,15 @@
 import React, { Component} from 'react';
-import {Paper, Grid, } from '@material-ui/core';
+import {Grid, CssBaseline, Switch} from '@material-ui/core';
 import LiveWeather from './MainComponents/LiveWeather';
 import Clock from './MainComponents/Clock';
+import DigitalClock from './MainComponents/DigitalClock';
 import Diary from './MainComponents/Diary';
 import { withStyles } from '@material-ui/core/styles';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import {createMuiTheme} from '@material-ui/core/styles';
+import THEME from '../App_theme';
+import FONT from '../App_font';
 
-const style = {
-  root:{
-  },
-  bar: {
-    background: "#82E0AA"
-  },
-  body:{
-    background: "#CFD8DC",
-  }
-}
 
 class Main extends Component {
   constructor()
@@ -22,48 +17,75 @@ class Main extends Component {
     super();
     var lang = localStorage.getItem('uiLanguage');
 
+    var clock = localStorage.getItem('uiClock');
+    
+    if(clock === null)
+    {
+      clock = "digital"
+      localStorage.setItem('uiClock', clock)
+    }
+
     this.state ={
-      language: lang
+      language: lang,
+      clock: clock,
     }
   }
 
-  handleLanguageChange = (event) =>
+  handleClockChange = (event) =>
   {
-    if(event.target.value !== "fi")
+    if(event.target.value === "digital")
     {
+      localStorage.setItem('uiClock', "analog");
       this.setState({
-        language: "fi",
+        clock: "analog"
       });
     }
     else
     {
+      localStorage.setItem('uiClock', "digital");
       this.setState({
-        language: "en",
+        clock: "digital"
       });
     }
+    
   }
 
   render() {
-    const {classes} = this.props;
     
+    let theme = createMuiTheme({palette: (THEME[localStorage.getItem('uiTheme')]).palette, typography: (FONT[localStorage.getItem('uiFont')]).typography});
+    
+    let clock;
+    if(localStorage.getItem('uiClock') === "analog")
+    {
+      clock = <Clock size={300} backgroundColor={(THEME[localStorage.getItem('uiTheme')]).palette.secondary.main}></Clock>;
+    }
+    else
+    {
+      clock = <DigitalClock></DigitalClock>;
+    }
+
     return (
-      <div className={classes.root}>
-        <Paper className={classes.body}>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <div >
           <Grid justify="center" container>
             <Grid item>
-              <LiveWeather language={this.state.language}/>  
+              <LiveWeather theme={theme} language={this.state.language}/>  
             </Grid>
             <Grid item>
-              <Clock size={300} backgroundColor={"#82E0AA"}></Clock>
+              {clock}
+              <div>
+                Digital <Switch checked={localStorage.getItem('uiClock') === "analog"} value={this.state.clock} onChange={(e) => this.handleClockChange(e)}></Switch> Analog
+              </div>
             </Grid>
             <Grid item>
-              <Diary language={this.state.language} />
+              <Diary theme={theme} language={this.state.language} />
             </Grid>
           </Grid>
-        </Paper>
-      </div>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
 
-export default withStyles(style)(Main);
+export default withStyles({withTheme: true})(Main);

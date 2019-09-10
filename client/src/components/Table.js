@@ -1,18 +1,12 @@
 import React, { Component} from 'react';
-import {Paper, Grid,} from '@material-ui/core';
+import {Grid, CssBaseline} from '@material-ui/core';
 import WeatherList from './WeatherList';
 import { withStyles } from '@material-ui/core/styles';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import {createMuiTheme} from '@material-ui/core/styles';
+import THEME from '../App_theme';
+import FONT from '../App_font';
 
-const style = {
-  root:{
-  },
-  bar: {
-    background: "#82E0AA"
-  },
-  body:{
-    background: "#CFD8DC",
-  }
-}
 
 class Table extends Component {
   constructor()
@@ -24,37 +18,22 @@ class Table extends Component {
     }
   }
 
-  handleLanguageChange = (event) =>
-  {
-    if(event.target.value !== "fi")
-    {
-      this.setState({
-        language: "fi",
-      });
-    }
-    else
-    {
-      this.setState({
-        language: "en",
-      });
-    }
-  }
-
   render() {
-    const {classes} = this.props;
+    let theme = createMuiTheme({palette: (THEME[localStorage.getItem('uiTheme')]).palette, typography: (FONT[localStorage.getItem('uiFont')]).typography});
 
     return (
-      <div className={classes.root}>
-        <Paper className={classes.body}>
-          <Grid justify="center" container>
-            <Grid item>
-              <WeatherList language={this.state.language}/>  
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <div >
+            <Grid justify="center" container>
+              <Grid item>
+                <WeatherList theme={theme} language={this.state.language}/>  
+              </Grid>
             </Grid>
-          </Grid>
-        </Paper>
-      </div>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
 
-export default withStyles(style)(Table);
+export default withStyles({withTheme: true})(Table);

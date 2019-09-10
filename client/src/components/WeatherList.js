@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {Paper, Table, TableHead, TableBody, TableRow, 
     TableCell, Radio, RadioGroup, FormControlLabel, 
     FormGroup, Button, Dialog,  DialogTitle, 
-    DialogContent, Stepper, Step, StepLabel, StepContent} from '@material-ui/core';
+    DialogContent, Stepper, Step, StepLabel, StepContent, Typography,} from '@material-ui/core';
 import { DatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import fiLocale from 'date-fns/locale/fi';
 import enLocale from 'date-fns/locale/en-US';
 import { withStyles } from '@material-ui/core/styles';
 import BUNDLE from '../App_bundle';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 const localeMap = {
     en: enLocale,
@@ -23,21 +24,15 @@ const styles = {
         padding: "20px",
     },
     header: {
-        background: "#2980B9",
-        padding: "0px 20px",
-    },
-    headerText: {
-        fontSize: 22,
+        padding: "20px 20px",
     },
     body: {
-        background: "#81D4FA",
         justify: "center",
         borderStyle: "solid",
-        borderColor: "#2980B9",
         alignItems: "center"
     },
     button:{
-        padding: "0px 10px",
+        padding: "10px 10px",
     }
 };
 
@@ -192,14 +187,15 @@ class WeatherList extends Component {
         ];
 
         return (
+            <MuiThemeProvider theme={this.props.theme}>
             <MuiPickersUtilsProvider locale={localeMap[this.props.language]} utils={DateFnsUtils}>
             <Paper>
-                <h1 className={classes.header}>
+                <Typography variant="h4" className={classes.header}>
                     {bundle.list + " " + this.state.minTime.getDate() + "." + (this.state.minTime.getMonth() + 1) + "." + this.state.minTime.getFullYear()  
                     + " - " + this.state.maxTime.getDate() + "." + (this.state.maxTime.getMonth() + 1) + "." + this.state.maxTime.getFullYear()}
-                </h1>
+                </Typography>
                 <div className={classes.button}>
-                    <Button variant="contained" onClick={(e) => this.openDialog(e)}>
+                    <Button color="secondary" variant="contained" onClick={(e) => this.openDialog(e)}>
                         {bundle.filter}
                     </Button>
                 </div>
@@ -265,7 +261,6 @@ class WeatherList extends Component {
                     <Dialog open={this.state.openDialog}>
                         <DialogTitle>{bundle.edit}</DialogTitle>
                         <DialogContent>
-                            <Paper>
                                 <Stepper activeStep={this.state.step} orientation="vertical">
                                     {steps.map(step => (
                                         <Step key={step.name}>
@@ -293,13 +288,13 @@ class WeatherList extends Component {
                                                     />
                                                 )}
                                                 <div>
-                                                    <Button onClick={(e) => this.cancelChange(e)}>
+                                                    <Button variant="contained" color="secondary" onClick={(e) => this.cancelChange(e)}>
                                                         {bundle.cancel}
                                                     </Button>
-                                                    <Button onClick={(e) => this.handleBack(e)} disabled={step.id === 1}>
+                                                    <Button variant="contained" color="secondary" onClick={(e) => this.handleBack(e)} disabled={step.id === 1}>
                                                         {bundle.back}
                                                     </Button>
-                                                    <Button color="primary" onClick={(e) => this.handleNext(e, step.id)}>
+                                                    <Button variant="contained" color="primary" onClick={(e) => this.handleNext(e, step.id)}>
                                                         {step.id === 2 ? bundle.confirm : bundle.next}
                                                     </Button>
                                                 </div>
@@ -307,12 +302,12 @@ class WeatherList extends Component {
                                         </Step>
                                     ))}
                                 </Stepper>
-                            </Paper>
                         </DialogContent>
                     </Dialog>
                 </div>
             </Paper>
             </MuiPickersUtilsProvider>
+            </MuiThemeProvider>
         );
     }
 }
