@@ -2,10 +2,14 @@ const {PythonShell} = require('python-shell');
 const sqlite3 = require('sqlite3').verbose();
 const express = require('express');
 const app = express();
+var bodyParser  = require('body-parser');
 
+app.use(bodyParser.json())
 app.get('/', (req, res) => {
   res.send('Hello world');
 });
+
+
 
 
 app.get('/api/weather', (req, res)=>{
@@ -35,15 +39,15 @@ app.get('/api/weather', (req, res)=>{
 });
 
 app.get('/api/diary', (req, res)=>{
-  let db = new sqlite3.Database('diary.db', (err) => {
+  let db = new sqlite3.Database('weather.db', (err) => {
     if(err) 
     {
       console.error(err.message);
     }
     else
     {
-      console.log('Connected to the diary.db.');
-      let sql = `SELECT * FROM diary`;
+      console.log('Connected to the weather.db.');
+      let sql = `SELECT * FROM DIARY`;
 
       db.all(sql, [], (err, rows)=>{
         if(err)
@@ -57,6 +61,48 @@ app.get('/api/diary', (req, res)=>{
     }
   });
 
+  db.close();
+});
+
+app.post('/api/diary', (req, res) => {
+  var postData  = req.body;
+  var type = req.headers.type;
+
+  let db = new sqlite3.Database('weather.db', (err) => {
+    if(err) 
+    {
+      console.error(err.message);
+    }
+    else
+    {
+      console.log('Connected to the weather.db.');
+      console.log(postData)
+      console.log(type)
+      var sqli;
+
+      if(type === "INSERT")
+      {
+        console.log("inserted")
+        sql = `INSERT INTO DIARY (DATE, DIARY) VALUES(?,?)`;
+        db.run(sql, [postData.DATE, postData.DIARY], function(err) {
+          if (err) {
+            return console.log(err.message);
+          }
+        });
+      }
+      else
+      {
+        console.log("updated")
+        sql = `UPDATE DIARY SET DIARY = ? WHERE DATE = ?`;
+        db.run(sql, [postData.DIARY, postData.DATE], function(err) {
+          if (err) {
+            return console.log(err.message);
+          }
+        });
+      }
+    }
+
+  });
   db.close();
 });
 

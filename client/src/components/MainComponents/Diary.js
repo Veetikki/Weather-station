@@ -4,6 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import BUNDLE from '../../App_bundle';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
+const DIARY = "/api/diary";
+
 const styles = {
     root:{
         padding: "20px",
@@ -22,13 +24,42 @@ class Diary extends Component {
     {
         super();
 
+        var currentDate = new Date();
+        currentDate.setHours(0,0,0,0);
+
         this.state = {
             openDialog: false,
             past: [],
             future: [],
             newDiary: "",
-            diary: "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            diaryList: [],
+            diary: "",
+            date: currentDate,
         }
+    }
+
+    componentDidMount()
+    {
+        fetch(DIARY)
+        .then(res => res.json())
+        .then(diaryList => this.setState({ diaryList: diaryList }, () => console.log(diaryList), this.setDiary(diaryList)))
+        .catch((err) => {
+            console.log(err)
+        });
+    }
+
+    setDiary(List)
+    {
+        List.map((diaryData, index) => {
+            if((this.state.date.getMonth() + 1) + "." + this.state.date.getDate() + "." +  this.state.date.getFullYear() === diaryData.DATE)
+            {
+                console.log("jasjdklfjk")
+                this.setState({
+                    diary: diaryData.DIARY,
+                })
+            }
+        });
+
     }
 
     openDialog = (event) =>
@@ -42,12 +73,38 @@ class Diary extends Component {
     closeDialog = (event) =>
     {
         this.updateHistory(event);
+        this.handleSubmit(event);
         this.setState({
             openDialog: false,
             diary: this.state.newDiary,
             newDiary: "",
         });
     }
+
+    handleSubmit(event) {
+        //alert('A list was submitted: ' + this.state.formvalue);
+        console.log(this.state.date + this.state.newDiary)
+        var thisType = "INSERT";
+
+        if(this.state.diary !== "")
+            thisType = "UPDATE";
+
+        event.preventDefault();
+        fetch(DIARY, {
+            method: 'POST',
+            headers: {
+                type: thisType,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+           body: JSON.stringify( {
+            DATE : (this.state.date.getMonth() + 1) + "." + this.state.date.getDate() + "." +  this.state.date.getFullYear(),
+            DIARY : this.state.newDiary,
+        })
+       }).then(res => res.json())
+       .then(data => console.log(data))
+       .catch(err => console.log(err));
+   }
 
     cancelChange = (event) =>
     {
