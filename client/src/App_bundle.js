@@ -39,6 +39,9 @@
             font: "Font",
             both: "Both",
             data: "Data",
+            undo: "Undo",
+            redo: "Redo",
+            export: "Export",
       },	
       en: {
             liveWeather: "Live Weather Station",
@@ -79,6 +82,9 @@
             font: "Font",
             both: "Both",
             data: "Data",
+            undo: "Undo",
+            redo: "Redo",
+            export: "Export",
       },	
       fi: {
             liveWeather: "Sääasema",
@@ -119,6 +125,9 @@
             font: "Kirjasintyyli",
             both: "Molemmat",
             data: "Tiedot",
+            undo: "Kumoa",
+            redo: "Toista",
+            export: "Vie tiedot",
       },
   }
   

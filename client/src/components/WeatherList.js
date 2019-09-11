@@ -10,6 +10,7 @@ import enLocale from 'date-fns/locale/en-US';
 import { withStyles } from '@material-ui/core/styles';
 import BUNDLE from '../App_bundle';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import ExportCSV from './ExportCSV';
 
 const localeMap = {
     en: enLocale,
@@ -51,6 +52,7 @@ class WeatherList extends Component {
             field: "DATE",
             reverse: false,
             weatherList: [],
+            boundedWeatherData: [],
             minTime: startTime,
             maxTime: endTime,
             newMinTime: startTime,
@@ -158,7 +160,19 @@ class WeatherList extends Component {
         }
         else
         {
+            var copyList = [];
+            this.state.weatherList.sort(this.sort_by(this.state.field, this.state.reverse)).map((weatherData, index) => {
+                let dataDate = new Date(weatherData.DATE)
+                dataDate.setHours(0,0,0,0);
+
+                if(dataDate >= this.state.newMinTime && dataDate <= this.state.newMaxTime)
+                {
+                    copyList.push(weatherData);
+                }
+            });
+
             this.setState({
+                boundedWeatherData: copyList,
                 step: this.state.step + 1,
                 minTime: this.state.newMinTime,
                 maxTime: this.state.newMaxTime,
@@ -198,6 +212,8 @@ class WeatherList extends Component {
                     <Button color="secondary" variant="contained" onClick={(e) => this.openDialog(e)}>
                         {bundle.filter}
                     </Button>
+                    <ExportCSV theme={this.props.theme} disabled={this.state.boundedWeatherData.length === 0} csvData={this.state.boundedWeatherData} fileName={this.state.minTime.getDate() + "." + (this.state.minTime.getMonth() + 1) + "." + this.state.minTime.getFullYear()  
+                    + "-" + this.state.maxTime.getDate() + "." + (this.state.maxTime.getMonth() + 1) + "." + this.state.maxTime.getFullYear() + ".csv"}/>
                 </div>
                 <RadioGroup
                         aria-label="Order"
@@ -235,10 +251,11 @@ class WeatherList extends Component {
                         </TableRow>
                     </TableHead>
                         <TableBody>
-                            {this.state.weatherList.sort(this.sort_by(this.state.field, this.state.reverse)).map((weatherData, index) => {
+                            {this.state.boundedWeatherData.sort(this.sort_by(this.state.field, this.state.reverse)).map((weatherData, index) => {
                                 let dataDate = new Date(weatherData.DATE)
                                 dataDate.setHours(0,0,0,0);
                                 if(dataDate >= this.state.minTime && dataDate <= this.state.maxTime)
+                                {
                                     return  <TableRow key={index}>
                                                 <TableCell>
                                                     {weatherData.DATE}
@@ -253,6 +270,7 @@ class WeatherList extends Component {
                                                     {weatherData.PRESS}
                                                 </TableCell>
                                             </TableRow>
+                                }
                             })}
                         </TableBody>
                 </Table>
@@ -312,4 +330,4 @@ class WeatherList extends Component {
     }
 }
  
-export default withStyles(styles)(WeatherList);
+export default withStyles(styles, {withTheme: true})(WeatherList);
