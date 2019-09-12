@@ -4,7 +4,8 @@
   "description": "Raspberry Pi weather station",
   "main": "index.js",
   "scripts": {
-    "dev": "cd backend && npm run dev"
+    "dev": "cd backend && npm run dev",
+    "install": "cd client && npm install"
   },
   "repository": {
     "type": "git",
