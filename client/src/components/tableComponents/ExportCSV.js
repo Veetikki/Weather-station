@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { CSVLink } from 'react-csv'
 import {Button} from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
-import BUNDLE from '../App_bundle';
+import BUNDLE from '../../interface/App_bundle';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 class ExportCSV extends Component

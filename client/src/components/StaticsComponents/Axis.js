@@ -2,13 +2,11 @@ import React, { Component} from 'react';
 import {Grid, CssBaseline, Radio, FormGroup, FormControlLabel, RadioGroup,} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { VictoryChart, VictoryLine, VictoryZoomContainer, VictoryAxis } from 'victory';
-import BUNDLE from '../App_bundle';
+import BUNDLE from '../../interface/App_bundle';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import {createMuiTheme} from '@material-ui/core/styles';
-import THEME from '../App_theme';
-import FONT from '../App_font';
-
-const WEATHER = "/api/weather";
+import THEME from '../../interface/App_theme';
+import FONT from '../../interface/App_font';
 
 const style = {
   root:{

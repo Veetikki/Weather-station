@@ -1,14 +1,14 @@
 import React, { Component} from 'react';
 import {Grid, CssBaseline, Switch} from '@material-ui/core';
-import LiveWeather from './MainComponents/LiveWeather';
-import Clock from './MainComponents/Clock';
-import DigitalClock from './MainComponents/DigitalClock';
-import Diary from './MainComponents/Diary';
+import LiveWeather from './LiveWeather';
+import Clock from './Clock';
+import DigitalClock from './DigitalClock';
+import Diary from './Diary';
 import { withStyles } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import {createMuiTheme} from '@material-ui/core/styles';
-import THEME from '../App_theme';
-import FONT from '../App_font';
+import THEME from '../../interface/App_theme';
+import FONT from '../../interface/App_font';
 
 
 class Main extends Component {

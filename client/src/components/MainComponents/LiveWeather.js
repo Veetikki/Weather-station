@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {List, ListItem, ListItemText, Card, CardHeader, CardContent, } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import BUNDLE from "../../App_bundle";
+import BUNDLE from "../../interface/App_bundle";
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 const LIVEWEATHER = "/api/liveWeather";
@@ -27,15 +27,17 @@ class LiveWeather extends Component {
 
     componentDidMount()
     {
+        /*
         fetch(LIVEWEATHER)
         .then(res => res.json())
         .then(liveWeather => this.setState({ liveWeather: liveWeather }, () => console.log(liveWeather)))
         .catch((err) => {
             console.log(err)
         });
+        */
         fetch(WEATHERAPI)
         .then(res => res.json())
-        .then(weatherStatus => this.setState({ weather: weatherStatus.weather[0], humidity: weatherStatus.main.humidity }, () => console.log(weatherStatus.weather[0])))
+        .then(weatherStatus => this.setState({liveWeather: {"TEMP":weatherStatus.main.temp, "PRESS": weatherStatus.main.pressure}, weather: weatherStatus.weather[0], humidity: weatherStatus.main.humidity }, () => console.log(weatherStatus.weather[0])))
         .catch((err) => {
             console.log(err)
         });

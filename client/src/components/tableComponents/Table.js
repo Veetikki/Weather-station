@@ -4,8 +4,8 @@ import WeatherList from './WeatherList';
 import { withStyles } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import {createMuiTheme} from '@material-ui/core/styles';
-import THEME from '../App_theme';
-import FONT from '../App_font';
+import THEME from '../../interface/App_theme';
+import FONT from '../../interface/App_font';
 
 
 class Table extends Component {

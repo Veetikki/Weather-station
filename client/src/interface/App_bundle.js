@@ -29,7 +29,8 @@
             endTime: "End time",
             interface: "Interface",
             navigation: "Navigation",
-            moves: "moves to different routers.",
+            guide: "Warning! If you are changing interface or language then site will reload and you lose your filters!",
+            moves: "moves to different routers. ",
             close: "Close",
             default: "Default",
             dark: "Dark",
@@ -42,6 +43,7 @@
             undo: "Undo",
             redo: "Redo",
             export: "Export",
+            delete: "Delete",
       },	
       en: {
             liveWeather: "Live Weather Station",
@@ -72,7 +74,8 @@
             endTime: "End date",
             interface: "Interface",
             navigation: "Navigation",
-            moves: "moves to different routers.",
+            guide: "Warning! If you are changing interface or language then site will reload and you lose your filters!",
+            moves: "moves to different routers. ",
             close: "Close",
             default: "Default",
             dark: "Dark",
@@ -85,6 +88,7 @@
             undo: "Undo",
             redo: "Redo",
             export: "Export",
+            delete: "Delete",
       },	
       fi: {
             liveWeather: "Sääasema",
@@ -115,7 +119,8 @@
             endTime: "Lopetus päivämäärä",
             interface: "Ulkoasu",
             navigation: "Ohjeet",
-            moves: "voit liikkua eri sivujen välillä.",
+            moves: "voit liikkua eri sivujen välillä. ",
+            guide: "Huom! Jos muutat ulkoasuja sivu päivittyy ja menetät esim. filtterit!",
             close: "Sulje",
             default: "Oletus",
             dark: "Tumma",
@@ -128,6 +133,7 @@
             undo: "Kumoa",
             redo: "Toista",
             export: "Vie tiedot",
+            delete: "Poista",
       },
   }
   

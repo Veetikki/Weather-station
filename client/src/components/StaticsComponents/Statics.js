@@ -6,11 +6,11 @@ import DateFnsUtils from '@date-io/date-fns';
 import fiLocale from 'date-fns/locale/fi';
 import enLocale from 'date-fns/locale/en-US';
 import { withStyles } from '@material-ui/core/styles';
-import BUNDLE from '../App_bundle';
+import BUNDLE from '../../interface/App_bundle';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import {createMuiTheme} from '@material-ui/core/styles';
-import THEME from '../App_theme';
-import FONT from '../App_font';
+import THEME from '../../interface/App_theme';
+import FONT from '../../interface/App_font';
 import Axis from './Axis';
 
 const localeMap = {

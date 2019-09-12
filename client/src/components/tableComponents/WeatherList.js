@@ -8,7 +8,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import fiLocale from 'date-fns/locale/fi';
 import enLocale from 'date-fns/locale/en-US';
 import { withStyles } from '@material-ui/core/styles';
-import BUNDLE from '../App_bundle';
+import BUNDLE from '../../interface/App_bundle';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import ExportCSV from './ExportCSV';
 
@@ -43,8 +43,7 @@ class WeatherList extends Component {
         super();
 
         var startTime = new Date();
-        startTime.setHours(0);
-        startTime.setMinutes(0);
+        startTime.setHours(0,0,0,0);
 
         var endTime = new Date();
 
@@ -64,9 +63,20 @@ class WeatherList extends Component {
 
     componentDidMount()
     {
+        var copyList = [];
         fetch(WEATHER)
         .then(res => res.json())
-        .then(weatherList => this.setState({ weatherList: weatherList }, () => console.log(weatherList)))
+        .then(weatherList => 
+            (weatherList.sort(this.sort_by(this.state.field, this.state.reverse)).map((weatherData, index) => {
+                let dataDate = new Date(weatherData.DATE)
+                dataDate.setHours(0,0,0,0);
+
+                if(dataDate >= this.state.minTime && dataDate <= this.state.maxTime)
+                {
+                    copyList.push(weatherData);
+                }
+            }), this.setState({ weatherList: weatherList, boundedWeatherData: copyList }, () => console.log(weatherList),
+        )))
         .catch((err) => {
             console.log(err)
         });
@@ -196,8 +206,8 @@ class WeatherList extends Component {
         }
 
         const steps =[
-            createData(bundle.setEnd),
             createData(bundle.setStart),
+            createData(bundle.setEnd),
         ];
 
         return (
@@ -251,7 +261,7 @@ class WeatherList extends Component {
                         </TableRow>
                     </TableHead>
                         <TableBody>
-                            {this.state.boundedWeatherData.sort(this.sort_by(this.state.field, this.state.reverse)).map((weatherData, index) => {
+                            {this.state.weatherList.sort(this.sort_by(this.state.field, this.state.reverse)).map((weatherData, index) => {
                                 let dataDate = new Date(weatherData.DATE)
                                 dataDate.setHours(0,0,0,0);
                                 if(dataDate >= this.state.minTime && dataDate <= this.state.maxTime)
@@ -287,7 +297,7 @@ class WeatherList extends Component {
                                                 {step.id === 1 && (
                                                     <DatePicker
                                                     format="do MMMM yyyy"
-                                                    label={bundle.endTime}
+                                                    label={bundle.startTime}
                                                     value={this.state.newMinTime}
                                                     maxDate={new Date()}
                                                     onChange={this.handleMinDateChange}

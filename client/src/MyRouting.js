@@ -6,12 +6,12 @@ import { withStyles } from '@material-ui/core/styles';
 import { Route, BrowserRouter as Router,} from 'react-router-dom';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import {createMuiTheme} from '@material-ui/core/styles';
-import Main from './components/Main';
-import Table from './components/Table';
-import Statics from './components/Statics';
-import BUNDLE from './App_bundle';
-import THEME from './App_theme';
-import FONT from './App_font';
+import Main from './components/MainComponents/Main';
+import Table from './components/tableComponents/Table';
+import Statics from './components/StaticsComponents/Statics';
+import BUNDLE from './interface/App_bundle';
+import THEME from './interface/App_theme';
+import FONT from './interface/App_font';
 import Hotkeys from 'react-hot-keys';
 
 const styles = {
@@ -190,6 +190,7 @@ class MyRouting extends Component {
                     <DialogContent>
                         <Typography>
                             {"Ctrl + i, 1 <= i <= 3, " + bundle.moves}
+                            {bundle.guide}
                         </Typography>
                     </DialogContent>
                     <DialogActions>

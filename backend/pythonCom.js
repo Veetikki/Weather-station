@@ -88,9 +88,10 @@ app.post('/api/diary', (req, res) => {
           if (err) {
             return console.log(err.message);
           }
+          res.end(JSON.stringify(`Rows inserted ${this.changes}`))
         });
       }
-      else
+      else if(type=== "UPDATE")
       {
         console.log("updated")
         sql = `UPDATE DIARY SET DIARY = ? WHERE DATE = ?`;
@@ -98,8 +99,20 @@ app.post('/api/diary', (req, res) => {
           if (err) {
             return console.log(err.message);
           }
+          res.end(JSON.stringify(`Rows updated ${this.changes}`))
         });
       }
+      else
+       {
+         console.log("deleted")
+         sql = `DELETE FROM DIARY WHERE DATE=?`;
+         db.run(sql, [postData.DATE], function(err) {
+          if (err) {
+            return console.log(err.message);
+          }
+          res.end(JSON.stringify(`Rows deleted ${this.changes}`))
+        });
+       }
     }
 
   });

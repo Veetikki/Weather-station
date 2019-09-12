@@ -17,7 +17,7 @@ const THEME = {
             background:{
                 default: "#CFD8DC",
                 paper: '#63ccff',
-            }
+            },
         },
     },	
     dark: {
