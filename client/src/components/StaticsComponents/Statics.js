@@ -74,17 +74,7 @@ class Statics extends Component {
     //sort by filed: name or size, reverse tells if ascending or descending order for Array().sort() function.
     sort_by(field, reverse)
     {
-        var primer;
-
-        //tarkistetaan mitä vertaillaan ja muokataan se vertailtavaan muotoon
-        if(field === 'DATE')
-        {
-            primer = function(a){return new Date(a)};
-        }
-        else
-        {
-            primer = parseFloat;
-        }
+        var primer = function(a){return new Date(a)};
     
         //eli tehdään compare functio ja varmistetaan että saa oikean mallisen parametrin
         var key = primer ? 
@@ -148,6 +138,7 @@ class Statics extends Component {
         }
         else
         {
+            //viimeisessä asetetaan uusi rajattu lista 
             var copyList = [];
             this.state.weatherList.sort(this.sort_by("DATE", false)).map((weatherData, index) => {
                 let dataDate = new Date(weatherData.DATE)
@@ -170,6 +161,7 @@ class Statics extends Component {
     render() { 
         const { classes } = this.props;
 
+        //määritetään vaiheet kun päivät valitaan
         let id = 0;
         function createData(name) {
         id += 1;

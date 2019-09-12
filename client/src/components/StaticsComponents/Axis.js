@@ -40,22 +40,6 @@ class Axis extends Component {
     }
   }
 
-  handleLanguageChange = (event) =>
-  {
-    if(event.target.value !== "fi")
-    {
-      this.setState({
-        language: "fi",
-      });
-    }
-    else
-    {
-      this.setState({
-        language: "en",
-      });
-    }
-  }
-
   handleDataShow = (event) =>
   {
     this.setState({

@@ -29,6 +29,7 @@ const styles = {
 class MyRouting extends Component {
     constructor()
     {
+        //Pääkomponentti joka kommunikoi ulkoasun muutosten kanssa.
         super();
         var lang = localStorage.getItem('uiLanguage');
         if (lang === null)
@@ -62,6 +63,7 @@ class MyRouting extends Component {
 
     handleOpenSite(keyName)
     {
+        //mikä sivu aukaistaan.
         if(keyName === "alt+1")
             window.location.href = "http://localhost:3000";
         else if(keyName === "alt+2")
@@ -134,7 +136,7 @@ class MyRouting extends Component {
 
     render() {
         const {classes} = this.props;
-        
+        //hoidetaan kilen tarkastelu ja teeman luonti.
         let bundle = BUNDLE.default;
         if (this.state.language in BUNDLE) {
             bundle = BUNDLE[this.state.language];

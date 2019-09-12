@@ -99,6 +99,7 @@ class Diary extends Component {
         return i;
     }
 
+    //post data to server
     handleSubmit = async (event, oldData, newData) => {
         var thisType = "INSERT";
 
@@ -124,6 +125,7 @@ class Diary extends Component {
             })
            });
 
+           //waits for server response
            const data = await fetchResponse.json();
            console.log(data);
            return data;
@@ -176,16 +178,14 @@ class Diary extends Component {
 
             copy1.push(present);
 
-            const res = this.handleSubmit(event, this.state.diary, newPresent[0]);
-
-            if(res)
-                this.setState({
-                    diary: newPresent[0],
-                    newDiary: newPresent[1],
-                    past: copy2,
-                    future: copy1,
-                }
-                );
+            //We want to submit with old ones before set state
+            this.handleSubmit(event, this.state.diary, newPresent[0]);
+            this.setState({
+                diary: newPresent[0],
+                newDiary: newPresent[1],
+                past: copy2,
+                future: copy1,
+            });
         }
     }
 
@@ -205,6 +205,7 @@ class Diary extends Component {
 
             copy2.push(present);
             
+            //We want to submit with old ones before set state
             this.handleSubmit(event, this.state.diary, newPresent[0]);
             this.setState({
                 diary: newPresent[0],

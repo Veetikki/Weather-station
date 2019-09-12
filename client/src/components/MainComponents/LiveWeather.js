@@ -27,6 +27,7 @@ class LiveWeather extends Component {
 
     componentDidMount()
     {
+        //not needed since most ones are not using RaspBerryPi
         /*
         fetch(LIVEWEATHER)
         .then(res => res.json())

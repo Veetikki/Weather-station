@@ -70,7 +70,7 @@ class WeatherList extends Component {
             (weatherList.sort(this.sort_by(this.state.field, this.state.reverse)).map((weatherData, index) => {
                 let dataDate = new Date(weatherData.DATE)
                 dataDate.setHours(0,0,0,0);
-
+                //rajataan lista heti jos päivässä on jotain tietoa
                 if(dataDate >= this.state.minTime && dataDate <= this.state.maxTime)
                 {
                     copyList.push(weatherData);
@@ -170,6 +170,7 @@ class WeatherList extends Component {
         }
         else
         {
+            //muokataan rajattu lista uudestaan
             var copyList = [];
             this.state.weatherList.sort(this.sort_by(this.state.field, this.state.reverse)).map((weatherData, index) => {
                 let dataDate = new Date(weatherData.DATE)
