@@ -8,7 +8,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import {createMuiTheme} from '@material-ui/core/styles';
 import Main from './components/MainComponents/Main';
 import Table from './components/tableComponents/Table';
-import Statics from './components/StaticsComponents/Statics';
+import Statics from './components/StatisticsComponents/Statistics';
 import BUNDLE from './interface/App_bundle';
 import THEME from './interface/App_theme';
 import FONT from './interface/App_font';
@@ -167,7 +167,7 @@ class MyRouting extends Component {
                         </Hotkeys>
                         <Hotkeys keyName="alt+3" onKeyDown={this.handleOpenSite.bind(this)}>
                             <div className={classes.button}>
-                                <Button color="secondary" href="http://localhost:3000/statics" variant="contained"> {bundle.statics} </Button>
+                                <Button color="secondary" href="http://localhost:3000/statics" variant="contained"> {bundle.statistics} </Button>
                             </div>
                         </Hotkeys>
                             <div className={classes.button}>

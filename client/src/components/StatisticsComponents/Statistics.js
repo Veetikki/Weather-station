@@ -39,7 +39,7 @@ const styles = {
 };
 
 
-class Statics extends Component {
+class Statistics extends Component {
     constructor(){
         super();
 
@@ -174,8 +174,8 @@ class Statics extends Component {
         }
 
         const steps =[
-            createData(bundle.setEnd),
             createData(bundle.setStart),
+            createData(bundle.setEnd),
         ];
 
         let theme = createMuiTheme({palette: (THEME[localStorage.getItem('uiTheme')]).palette, typography: (FONT[localStorage.getItem('uiFont')]).typography});
@@ -205,7 +205,7 @@ class Statics extends Component {
                                                 {step.id === 1 && (
                                                     <DatePicker
                                                     format="do MMMM yyyy"
-                                                    label={bundle.endTime}
+                                                    label={bundle.startTime}
                                                     value={this.state.minTime}
                                                     maxDate={new Date()}
                                                     onChange={this.handleMinDateChange}
@@ -249,4 +249,4 @@ class Statics extends Component {
     }
 }
  
-export default withStyles(styles, {withTheme: true})(Statics);
+export default withStyles(styles, {withTheme: true})(Statistics);
